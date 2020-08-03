@@ -3,39 +3,34 @@ package com.twu.refactoring;
 public class NumberCruncher {
     private final int[] numbers;
 
+    private int numberOfEven;
+    private int numberOfPositive;
+
     public NumberCruncher(int... numbers) {
         this.numbers = numbers;
+        for (int number : numbers) {
+            if (number % 2 == 0) {
+                numberOfEven += 1;
+            }
+            if (number >= 0) {
+                numberOfPositive += 1;
+            }
+        }
     }
 
     public int countEven() {
-        int count = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) count++;
-        }
-        return count;
+        return numberOfEven;
     }
 
     public int countOdd() {
-        int count = 0;
-        for (int number : numbers) {
-            if (number % 2 == 1) count++;
-        }
-        return count;
+        return numbers.length - numberOfEven;
     }
 
     public int countPositive() {
-        int count = 0;
-        for (int number : numbers) {
-            if (number >= 0) count++;
-        }
-        return count;
+        return numberOfPositive;
     }
 
     public int countNegative() {
-        int count = 0;
-        for (int number : numbers) {
-            if (number < 0) count++;
-        }
-        return count;
+        return numbers.length - numberOfPositive;
     }
 }
